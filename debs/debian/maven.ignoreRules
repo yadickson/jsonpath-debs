@@ -1,0 +1,7 @@
+
+commons-io commons-io * * * *
+junit junit * * * *
+org.apache.maven.plugins maven-surefire-plugin * * * *
+org.hamcrest hamcrest-core * * * *
+org.hamcrest hamcrest-library * * * *
+org.slf4j slf4j-simple * * * *

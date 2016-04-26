@@ -1,0 +1,5 @@
+
+com.jayway.jsonpath json-path-parent pom s/.*/debian/ * *
+net.minidev json-smart jar s/.*/debian/ * *
+org.codehaus.jackson jackson-mapper-asl jar s/.*/debian/ * *
+com.jayway.jsonpath json-path s/.*/jar/ s/.*/debian/ * *

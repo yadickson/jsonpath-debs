@@ -1,0 +1,3 @@
+
+com.jayway.jsonpath json-path-parent pom s/.*/debian/ * *
+com.jayway.jsonpath json-path s/.*/jar/ s/.*/debian/ * *

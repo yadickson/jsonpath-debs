@@ -1,0 +1,5 @@
+jayway-jsonpath (0.9.1-1) unstable; urgency=medium
+
+  * Initial release (Closes: #819651)
+
+ -- Emmanuel Bourg <ebourg@apache.org>  Fri, 01 Apr 2016 12:03:03 +0200

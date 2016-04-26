@@ -1,0 +1,18 @@
+Source: jayway-jsonpath
+Section: java
+Priority: optional
+Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Uploaders: Yadickson Soto <yadickson@gmail.com>
+Build-Depends: debhelper (>= 9), cdbs, default-jdk, maven-debian-helper (>= 1.5)
+Build-Depends-Indep: libmaven-bundle-plugin-java, libjson-smart-java, libslf4j-java, libjackson-json-java
+Standards-Version: 3.9.6
+Homepage: https://github.com/jayway/JsonPath
+
+Package: libjsonpath-java
+Architecture: all
+Depends: ${misc:Depends}, ${maven:Depends}
+Suggests: ${maven:OptionalDepends}
+Description: Jayway JsonPath - XPath like expressions for JSON
+ Jayway JsonPath is a Java port of Stefan Goessner JSONPath
+ implementation. It provides a XPath like syntax to query JSON
+ documents.
