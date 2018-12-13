@@ -39,6 +39,7 @@ $ fakeroot debian/rules clean binary
 **Tested**
 
 - Debian wheezy
+- Debian jessie
 
 **Repositories**
 
@@ -62,6 +63,6 @@ GPL-3.0 © [Yadickson Soto](https://github.com/yadickson)
 
 Apache-2.0 © [JsonPath](https://github.com/json-path/JsonPath)
 
-[travis-image]: https://api.travis-ci.org/yadickson/jsonpath-debs.svg?branch=wheezy
+[travis-image]: https://api.travis-ci.org/yadickson/jsonpath-debs.svg?branch=jessie
 [travis-url]: https://travis-ci.org/yadickson/jsonpath-debs
 
