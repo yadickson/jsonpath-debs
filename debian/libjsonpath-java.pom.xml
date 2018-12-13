@@ -54,7 +54,9 @@
     </developers>
     <properties>
         <scm.branch>master</scm.branch>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
 
         <slf4j.version>1.7.5</slf4j.version>
         <junit.version>4.10</junit.version>
@@ -79,12 +81,6 @@
     <modules>
         <module>json-path</module>
     </modules>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-                <maven.compiler.source>1.6</maven.compiler.source>
-                <maven.compiler.target>1.6</maven.compiler.target>
-	</properties>
 
     <build>
 
