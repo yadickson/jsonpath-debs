@@ -1,0 +1,11 @@
+jsonpath (0.9.1-2) wheezy; urgency=medium
+
+  * New release.
+
+ -- Yadickson Soto <yadickson@gmail.com>  Thu, 13 Dec 2018 12:35:54 -0300
+
+jsonpath (0.9.1-1) unstable; urgency=medium
+
+  * Initial release (Closes: #819651)
+
+ -- Emmanuel Bourg <ebourg@apache.org>  Fri, 01 Apr 2016 12:03:03 +0200

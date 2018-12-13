@@ -27,4 +27,3 @@
 #
 pom.xml --no-parent --has-package-version
 json-path/pom.xml --has-package-version --java-lib
-json-path-assert/pom.xml --ignore
