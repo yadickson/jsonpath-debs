@@ -26,7 +26,7 @@ jobs:
             debian/rules get-orig-source
             debian/rules publish-source
             debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
-          extra-build-deps: git unzip wget libc-bin dos2unix
+          extra-build-deps: git unzip wget libc-bin dos2unix ca-certificates-java
       - name: List artifacts files
         run: |
           ls -ls ./artifacts
@@ -53,7 +53,7 @@ jobs:
             debian/rules get-orig-source
             debian/rules publish-source
             debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
-          extra-build-deps: git unzip wget libc-bin dos2unix
+          extra-build-deps: git unzip wget libc-bin dos2unix ca-certificates-java
       - name: List artifacts files
         run: |
           ls -ls ./artifacts
@@ -81,7 +81,7 @@ jobs:
             debian/rules get-orig-source
             debian/rules publish-source
             debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
-          extra-build-deps: git unzip wget libc-bin dos2unix
+          extra-build-deps: git unzip wget libc-bin dos2unix ca-certificates-java
       - name: List artifacts files
         run: |
           ls -ls ./artifacts
@@ -112,7 +112,7 @@ jobs:
             debian/rules get-orig-source
             debian/rules publish-source
             debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
-          extra-build-deps: git unzip wget libc-bin dos2unix
+          extra-build-deps: git unzip wget libc-bin dos2unix ca-certificates-java
       - name: List artifacts files
         run: |
           ls -ls ./artifacts
@@ -143,7 +143,7 @@ jobs:
             debian/rules get-orig-source
             debian/rules publish-source
             debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
-          extra-build-deps: git unzip wget libc-bin dos2unix
+          extra-build-deps: git unzip wget libc-bin dos2unix ca-certificates-java
       - name: List artifacts files
         run: |
           ls -ls ./artifacts
@@ -169,7 +169,7 @@ jobs:
             debian/rules get-orig-source
             debian/rules publish-source
             debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
-          extra-build-deps: git unzip wget libc-bin dos2unix
+          extra-build-deps: git unzip wget libc-bin dos2unix ca-certificates-java
       - name: List artifacts files
         run: |
           ls -ls ./artifacts
@@ -195,7 +195,7 @@ jobs:
             debian/rules get-orig-source
             debian/rules publish-source
             debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
-          extra-build-deps: git unzip wget libc-bin dos2unix
+          extra-build-deps: git unzip wget libc-bin dos2unix ca-certificates-java
       - name: List artifacts files
         run: |
           ls -ls ./artifacts
@@ -221,7 +221,7 @@ jobs:
             debian/rules get-orig-source
             debian/rules publish-source
             debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
-          extra-build-deps: git unzip wget libc-bin dos2unix
+          extra-build-deps: git unzip wget libc-bin dos2unix ca-certificates-java
       - name: List artifacts files
         run: |
           ls -ls ./artifacts
