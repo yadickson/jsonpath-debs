@@ -1,0 +1,227 @@
+name: Build Debian Package
+
+on: [push, pull_request]
+
+jobs:
+  wheezy:
+    strategy:
+      matrix:
+        codename: [wheezy]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Debian binary and source package for ${{ matrix.codename }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: debian:${{ matrix.codename }}-slim
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          main-repos: |
+            deb [trusted=yes] http://archive.debian.org/debian/ ${{ matrix.codename }} main contrib
+            deb [trusted=yes] http://archive.debian.org/debian-security/ ${{ matrix.codename }}/updates main
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts
+  jessie:
+    strategy:
+      matrix:
+        codename: [jessie]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Debian binary and source package for ${{ matrix.codename }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: debian:${{ matrix.codename }}-slim
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          main-repos: |
+            deb [trusted=yes] http://archive.debian.org/debian/ ${{ matrix.codename }} main contrib
+            deb [trusted=yes] http://archive.debian.org/debian-security/ ${{ matrix.codename }}/updates main
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts
+  stretch:
+    strategy:
+      matrix:
+        codename: [stretch]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Debian binary and source package for ${{ matrix.codename }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: debian:${{ matrix.codename }}-slim
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          main-repos: |
+            deb [trusted=yes] http://archive.debian.org/debian/ ${{ matrix.codename }} main contrib
+            deb [trusted=yes] http://archive.debian.org/debian-security/ ${{ matrix.codename }}/updates main
+          buildpackage-opts: --build=binary --no-sign
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts
+  buster:
+    strategy:
+      matrix:
+        codename: [buster]
+        architecture: [amd64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Debian binary and source package for ${{ matrix.codename }} on ${{ matrix.architecture }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: debian:${{ matrix.codename }}-slim
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          main-repos: |
+            # These are intentionally given as two entries:
+            deb [trusted=yes] http://archive.debian.org/debian/ ${{ matrix.codename }} main contrib
+            deb [trusted=yes] http://archive.debian.org/debian/ ${{ matrix.codename }}-updates main contrib
+            deb [trusted=yes] http://archive.debian.org/debian-security/ ${{ matrix.codename }}/updates main
+          buildpackage-opts: --build=binary --no-sign
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts
+  bullseye:
+    strategy:
+      matrix:
+        codename: [bullseye]
+        architecture: [amd64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Debian binary and source package for ${{ matrix.codename }} on ${{ matrix.architecture }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: debian:${{ matrix.codename }}-slim
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          main-repos: |
+            # These are intentionally given as two entries:
+            deb [trusted=yes] http://archive.debian.org/debian/ ${{ matrix.codename }} main contrib
+            deb [trusted=yes] http://archive.debian.org/debian/ ${{ matrix.codename }}-updates main contrib
+            deb [trusted=yes] http://archive.debian.org/debian-security/ ${{ matrix.codename }}-security main
+          buildpackage-opts: --build=binary --no-sign
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts
+  bookworm:
+    strategy:
+      matrix:
+        codename: [bookworm]
+        architecture: [amd64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Debian binary and source package for ${{ matrix.codename }} on ${{ matrix.architecture }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: debian:${{ matrix.codename }}-slim
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          buildpackage-opts: --build=binary --no-sign
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts
+  trixie:
+    strategy:
+      matrix:
+        codename: [trixie]
+        architecture: [amd64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Debian binary and source package for ${{ matrix.codename }} on ${{ matrix.architecture }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: debian:${{ matrix.codename }}-slim
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          buildpackage-opts: --build=binary --no-sign
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts
+  forky:
+    strategy:
+      matrix:
+        codename: [forky]
+        architecture: [amd64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Debian binary and source package for ${{ matrix.codename }} on ${{ matrix.architecture }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: debian:${{ matrix.codename }}-slim
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          buildpackage-opts: --build=binary --no-sign
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts

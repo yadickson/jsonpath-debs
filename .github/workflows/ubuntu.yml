@@ -1,0 +1,211 @@
+name: Build Debian Package on Ubuntu
+
+on: [push, pull_request]
+
+jobs:
+  trusty:
+    strategy:
+      matrix:
+        codename: [trusty]
+        architecture: [amd64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Ubuntu binary and source package for ${{ matrix.codename }} on ${{ matrix.architecture }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: ubuntu:${{ matrix.codename }}
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts
+  xenial:
+    strategy:
+      matrix:
+        codename: [xenial]
+        architecture: [amd64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Ubuntu binary and source package for ${{ matrix.codename }} on ${{ matrix.architecture }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: ubuntu:${{ matrix.codename }}
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts
+  bionic:
+    strategy:
+      matrix:
+        codename: [bionic]
+        architecture: [amd64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Ubuntu binary and source package for ${{ matrix.codename }} on ${{ matrix.architecture }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: ubuntu:${{ matrix.codename }}
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          buildpackage-opts: --build=binary --no-sign
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts
+  focal:
+    strategy:
+      matrix:
+        codename: [focal]
+        architecture: [amd64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Ubuntu binary and source package for ${{ matrix.codename }} on ${{ matrix.architecture }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: ubuntu:${{ matrix.codename }}
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          buildpackage-opts: --build=binary --no-sign
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts
+  jammy:
+    strategy:
+      matrix:
+        codename: [jammy]
+        architecture: [amd64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Ubuntu binary and source package for ${{ matrix.codename }} on ${{ matrix.architecture }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: ubuntu:${{ matrix.codename }}
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          buildpackage-opts: --build=binary --no-sign
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts
+  noble:
+    strategy:
+      matrix:
+        codename: [noble]
+        architecture: [amd64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Ubuntu binary and source package for ${{ matrix.codename }} on ${{ matrix.architecture }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: ubuntu:${{ matrix.codename }}
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          buildpackage-opts: --build=binary --no-sign
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts
+  resolute:
+    strategy:
+      matrix:
+        codename: [resolute]
+        architecture: [amd64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Ubuntu binary and source package for ${{ matrix.codename }} on ${{ matrix.architecture }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: ubuntu:${{ matrix.codename }}
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          buildpackage-opts: --build=binary --no-sign
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts
+  stonking-testing:
+    strategy:
+      matrix:
+        codename: [stonking]
+        architecture: [amd64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+      - name: Build Ubuntu binary and source package for ${{ matrix.codename }} on ${{ matrix.architecture }}
+        uses: yadickson/build-deb-action@v2
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          docker-image: ubuntu:${{ matrix.codename }}
+          artifacts-dir: ./artifacts
+          source-dir: ./
+          buildpackage-opts: --build=binary --no-sign
+          before-build-hook: |
+            debian/rules get-orig-source
+            debian/rules publish-source
+            debchange --controlmaint --local="+ci${{ github.run_id }}~${{ matrix.codename }}~git$(git rev-parse --short HEAD)" "CI build on ${{ matrix.codename }}"
+          extra-build-deps: git unzip wget libc-bin dos2unix
+      - name: List artifacts files
+        run: |
+          ls -ls ./artifacts

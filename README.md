@@ -1,7 +1,5 @@
 # Debian Package for JsonPath Project
 
-[![TravisCI Status][travis-image]][travis-url]
-
 **Build dependencies**
 
 - debhelper (>= 9)

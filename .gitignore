@@ -11,4 +11,4 @@ debian/stamp-poms-patched
 target/
 .pc/
 build/
-
+.idea/
